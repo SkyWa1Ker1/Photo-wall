@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>添加照片 - 记忆墙</title>
+  <!-- css引用 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/styles.css" rel="stylesheet">
+  <!-- 不知道要不要用jquery -->
+</head>
+<body class="bg-add-ins">
+  <!-- 这是导航条 -->
+  <nav class="bg-orange-400 shadow-md fixed w-full z-10 transition-all duration-300" style="background-color: #ffcc80 !important; border-radius: 0 !important;">
+    <div class="container mx-auto px-10">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <a href="/" class="flex items-center">
+            <i class="fa fa-camera-retro text-2xl text-white mr-2"></i>
+            <span class="text-xl font-bold text-white">记忆墙</span>
+          </a>
+        </div>
+        
+        <div class="hidden md:flex items-center space-x-4">
+          <a href="/" class="text-white hover:text-orange-700 font-bold px-5 py-2 rounded-md font-medium transition-colors">首页</a>
+          <a href="/add" class="bg-orange-400 text-white px-5 py-2 rounded-md font-medium hover:bg-orange-500 transition-colors">
+            <i class="fa fa-plus-circle mr-1"></i> 添加照片
+          </a>
+        </div>
+        
+        <div class="hidden md:flex items-center space-x-2">
+          <a href="/auth/login" class="text-white hover:text-orange-700 font-bold px-5 py-2 rounded-md font-medium transition-colors">登录</a>
+          <a href="/auth/register" class="text-white hover:text-orange-700 font-bold px-5 py-2 rounded-md font-medium transition-colors">注册</a>
+        </div>
+        
+        <div class="md:hidden flex items-center">
+          <button type="button" id="mobile-menu-button" class="text-gray-700 hover:text-orange-500">
+            <i class="fa fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 手机版菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+      <div class="container mx-auto px-4 py-2 space-y-1">
+        <a href="/" class="block text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md font-medium">首页</a>
+        <a href="/add" class="block bg-orange-400 text-white px-4 py-2 rounded-md font-medium mb-2 hover:bg-orange-500 transition-colors">
+          <i class="fa fa-plus-circle mr-1"></i> 添加照片
+        </a>
+        <div class="flex space-x-2">
+          <a href="/auth/login" class="flex-1 text-center text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md font-medium border border-gray-300">登录</a>
+          <a href="/auth/register" class="flex-1 text-center text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md font-medium border border-gray-300">注册</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mx-auto pt-24 pb-12">
+    <div class="max-w-2xl mx-auto">
+      <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">添加新照片😉</h1>
+        <p class="text-gray-600 mb-6">分享你的精彩瞬间，与他人一起回味美好时光</p>
+        
+                <form action="/add" method="POST" enctype="multipart/form-data">
+          <div class="mb-4">
+            <label for="title" class="block text-sm font-medium text-gray-700 mb-1">照片标题</label>
+            <input type="text" id="title" name="title" class="w-full px-4 py-2 border-1 border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="输入照片标题" required>
+          </div>
+          
+          <div class="mb-4">
+            <label for="category" class="block text-sm font-medium text-gray-700 mb-1">照片分类</label>
+            <select id="category" name="category" class="w-full px-4 py-2 border-1 border-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent" required>
+              <option value="">选择分类</option>
+              <option value="旅行">旅行</option>
+              <option value="家庭">家庭</option>
+              <option value="美食">美食</option>
+              <option value="城市">城市</option>
+              <option value="自然">自然</option>
+              <option value="宠物">宠物</option>
+              <!-- 以后再加 -->
+            </select>
+          </div>
+          
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700 mb-1">上传照片</label>
+            <div class="flex items-center justify-center w-full">
+              <label class="flex flex-col rounded-lg border-2 border-dashed w-full h-64 p-10 group text-center">
+                <div class="h-full w-full text-center flex flex-col items-center justify-center">
+                  <div class="flex flex-auto items-center justify-center">
+                    <i class="fa fa-cloud-upload text-5xl text-gray-400"></i>
+                  </div>
+                  <p class="text-gray-500 mt-2">点击上传或拖拽照片到这里</p>
+                  <p class="text-xs text-gray-400 mt-1">支持 JPG, PNG, GIF 格式</p>
+                </div>
+                <input type="file" class="hidden" accept="image/*" />
+              </label>
+            </div>
+            <p class="text-xs text-gray-500 mt-1">建议上传尺寸：1920x1080 像素</p>
+          </div>
+          
+          <div class="flex justify-end">
+            <button type="submit" class="bg-orange-400 text-white px-6 py-2 rounded-md font-medium hover:bg-orange-500 transition-colors flex items-center">
+              <i class="fa fa-save mr-2"></i> 保存照片
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <div class="flex items-center">
+            <i class="fa fa-camera-retro text-2xl text-orange-300 mr-2"></i>
+            <span class="text-xl font-bold">记忆墙</span>
+          </div>
+          <p class="text-gray-400 mt-2">留住每一刻美好，分享生活的精彩</p>
+        </div>
+        
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fa fa-weixin text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fa fa-weibo text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fa fa-qq text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fa fa-music text-xl"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+        <p>© 威哥制作 盗版必究</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 菜单按钮点击
+    const toggleMobileMenu = () => {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    };
+    
+    document.getElementById('mobile-menu-button').addEventListener('click', toggleMobileMenu);
+    
+    // 上传照片按钮功能
+    // 等下次再写
+  </script>
+</body>
+</html>    

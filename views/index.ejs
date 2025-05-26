@@ -1,0 +1,250 @@
+<!-- @author: 威哥 -->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>记忆墙 - 分享你的精彩瞬间</title>
+  <!-- 引入css和js -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/styles.css" rel="stylesheet">
+  <!-- 后期可能要用jquery -->
+</head>
+<body class="bg-main-ins">
+  <!-- 顶部导航栏 -->
+  <nav class="bg-orange-400 shadow-md fixed w-full z-10 transition-all duration-300" style="background-color: #ffcc80 !important; border-radius: 0 !important;">
+    <div class="container mx-auto px-10">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <a href="/" class="flex items-center">
+            <i class="fa fa-camera-retro text-2xl text-white mr-2"></i>
+            <span class="text-xl font-bold text-white">记忆墙</span>
+          </a>
+        </div>
+        
+        <div class="hidden md:flex items-center space-x-4">
+          <a href="/" class="text-white hover:text-orange-700 font-bold px-5 py-2 rounded-md font-medium transition-colors">首页</a>
+          <a href="/add" class="bg-orange-400 text-white px-5 py-2 rounded-md font-medium hover:bg-orange-500 transition-colors">
+            <i class="fa fa-plus-circle mr-1"></i> 添加照片
+          </a>
+        </div>
+        
+        <div class="hidden md:flex items-center space-x-2">
+          <a href="/auth/login" class="text-white hover:text-orange-700 font-bold px-5 py-2 rounded-md font-medium transition-colors">登录</a>
+          <a href="/auth/register" class="text-white hover:text-orange-700 font-bold px-5 py-2 rounded-md font-medium transition-colors">注册</a>
+        </div>
+        
+        <div class="md:hidden flex items-center">
+          <button type="button" id="mobile-menu-button" class="text-gray-700 hover:text-orange-500">
+            <i class="fa fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 手机版菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+      <div class="container mx-auto px-4 py-2 space-y-1">
+        <a href="/" class="block text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md font-medium">首页</a>
+        <a href="/add" class="block bg-orange-400 text-white px-4 py-2 rounded-md font-medium mb-2 hover:bg-orange-500 transition-colors">
+          <i class="fa fa-plus-circle mr-1"></i> 添加照片
+        </a>
+        <div class="flex space-x-2">
+          <a href="/auth/login" class="flex-1 text-center text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md font-medium border border-gray-300">登录</a>
+          <a href="/auth/register" class="flex-1 text-center text-gray-700 hover:text-orange-500 px-3 py-2 rounded-md font-medium border border-gray-300">注册</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mx-auto pt-24 pb-12">
+    <div class="flex flex-col md:flex-row gap-6">
+      <!-- 左侧分类栏 -->
+      <div class="w-full md:w-64 bg-white rounded-lg shadow-md p-4 sticky top-24">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">照片分类</h2>
+        <div class="space-y-2 left-nav-divider">
+          <a href="/" class="block py-2 px-3 rounded-md bg-orange-100 text-orange-500 font-medium hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5 category-underline">
+            <i class="fa fa-th-large mr-2"></i> 全部照片
+          </a>
+          <a href="#" class="block py-2 px-3 rounded-md text-gray-700 transition-all duration-300 hover:bg-orange-100 hover:text-orange-500 hover:shadow-md transform hover:-translate-y-0.5 category-underline">
+            <i class="fa fa-plane mr-2"></i> 旅行
+          </a>
+          <a href="#" class="block py-2 px-3 rounded-md text-gray-700 transition-all duration-300 hover:bg-gray-100 hover:text-orange-500 hover:shadow-md transform hover:-translate-y-0.5 category-underline">
+            <i class="fa fa-home mr-2"></i> 家庭
+          </a>
+          <a href="#" class="block py-2 px-3 rounded-md text-gray-700 transition-all duration-300 hover:bg-gray-100 hover:text-orange-500 hover:shadow-md transform hover:-translate-y-0.5 category-underline">
+            <i class="fa fa-cutlery mr-2"></i> 美食
+          </a>
+          <a href="#" class="block py-2 px-3 rounded-md text-gray-700 transition-all duration-300 hover:bg-gray-100 hover:text-orange-500 hover:shadow-md transform hover:-translate-y-0.5 category-underline">
+            <i class="fa fa-building mr-2"></i> 城市
+          </a>
+          <a href="#" class="block py-2 px-3 rounded-md text-gray-700 transition-all duration-300 hover:bg-gray-100 hover:text-orange-500 hover:shadow-md transform hover:-translate-y-0.5 category-underline">
+            <i class="fa fa-tree mr-2"></i> 自然
+          </a>
+          <a href="#" class="block py-2 px-3 rounded-md text-gray-700 transition-all duration-300 hover:bg-gray-100 hover:text-orange-500 hover:shadow-md transform hover:-translate-y-0.5 category-underline">
+            <i class="fa fa-paw mr-2"></i> 宠物
+          </a>
+        </div>  
+        
+        <div class="mt-6 left-nav-divider">
+          <h2 class="text-xl font-bold text-gray-800 mb-4">热门标签</h2>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-orange-100 hover:text-orange-500 transition-all duration-300 cursor-pointer transform hover:scale-105">
+              #旅行
+            </span>
+            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-purple-100 hover:text-purple-600 transition-all duration-300 cursor-pointer transform hover:scale-105">
+              #美食
+            </span>
+            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-purple-100 hover:text-purple-600 transition-all duration-300 cursor-pointer transform hover:scale-105">
+              #家庭
+            </span>
+            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-purple-100 hover:text-purple-600 transition-all duration-300 cursor-pointer transform hover:scale-105">
+              #风景
+            </span>
+            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-purple-100 hover:text-purple-600 transition-all duration-300 cursor-pointer transform hover:scale-105">
+              #宠物
+            </span>
+            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-purple-100 hover:text-purple-600 transition-all duration-300 cursor-pointer transform hover:scale-105">
+              #城市
+            </span>
+            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-purple-100 hover:text-purple-600 transition-all duration-300 cursor-pointer transform hover:scale-105">
+              #自然
+            </span>
+          </div>    
+        </div>
+      </div>
+      
+      <!-- 右侧主要内容 -->
+      <div class="flex-1">
+        <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+          <h1 class="text-2xl font-bold text-gray-800">精彩照片墙✨️</h1>
+          <p class="text-gray-600">分享生活中的美好瞬间，留下珍贵的回忆</p>
+        </div>
+        
+        <!-- 照片网格 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- 循环渲染照片卡片 -->
+          <% photos.forEach(photo => { %>
+            <div class="bg-white rounded-3xl shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-2xl hover:-translate-y-2 ins-card">
+              <div class="relative w-full aspect-square overflow-hidden">
+                <img src="<%= photo.url %>" alt="<%= photo.title %>" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                <div class="absolute top-3 right-3 text-white text-xs font-bold px-3 py-1 rounded-full shadow 
+                  <% if(photo.category==='生活'){%>tag-life<%}else if(photo.category==='家庭'){%>tag-family<%}else if(photo.category==='美食'){%>tag-food<%}else if(photo.category==='城市'){%>tag-city<%}else if(photo.category==='自然'){%>tag-nature<%}else if(photo.category==='宠物'){%>tag-pet<%}else{%>tag-other<%}%>">
+                  <%= photo.category %>
+                </div>
+              </div>
+              <div class="p-4 pb-2">
+                <h3 class="text-lg font-semibold text-gray-800 flex-1 truncate mb-2"><%= photo.title %></h3>
+                <!-- 评论区域 -->
+                <div class="mt-2">
+                  <div class="space-y-2 max-h-24 overflow-y-auto pr-1">
+                    <% photo.comments.forEach(comment => { %>
+                      <div class="bg-gray-50 px-3 py-2 rounded-xl text-sm text-gray-700 flex items-center gap-2">
+                        <span><%= comment.text %></span>
+                        <% if(comment.date) { %>
+                          <span class="text-xs text-gray-400 ml-2"><%= comment.date %></span>
+                        <% } %>
+                      </div>
+                    <% }) %>
+                  </div>
+                  <!-- 评论表单 -->
+                  <form action="/comment/<%= photo.id %>" method="POST" class="mt-2 flex">
+                    <input type="text" name="comment" placeholder="添加评论..." class="flex-1 border border-gray-200 rounded-l-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent text-sm bg-gray-50">
+                    <button type="submit" class="bg-orange-400 text-white px-4 py-2 rounded-r-full hover:bg-orange-500 transition-colors"><i class="fa fa-paper-plane"></i></button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+        
+        <!-- 分页 -->
+        <div class="mt-8 flex justify-center">
+          <nav class="inline-flex rounded-md" aria-label="分页">
+            <a href="<%= currentPage > 1 ? `/?page=${currentPage - 1}` : '#' %>" 
+               class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:translate-x-[-2px]">
+              <i class="fa fa-chevron-left"></i>
+            </a>
+            
+            <% for (let i = 1; i <= totalPages; i++) { %>
+              <a href="?page=<%= i %>" 
+                 class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium transition-all duration-300 transform hover:scale-105
+                        <%= i === currentPage ? 'bg-orange-100 text-orange-500 border-orange-300' : 'bg-white text-gray-700 hover:bg-gray-50' %>">
+                <%= i %>
+              </a>
+            <% } %>
+            
+            <a href="<%= currentPage < totalPages ? `/?page=${currentPage + 1}` : '#' %>" 
+               class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:translate-x-[2px]">
+              <i class="fa fa-chevron-right"></i>
+            </a>
+          </nav>    
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <div class="flex items-center">
+            <i class="fa fa-camera-retro text-2xl text-orange-300 mr-2"></i>
+            <span class="text-xl font-bold">记忆墙</span>
+          </div>
+          <p class="text-gray-400 mt-2">留住每一刻美好，分享生活的精彩</p>
+        </div>
+        
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fa fa-weixin text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fa fa-weibo text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fa fa-qq text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fa fa-music text-xl"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+        <p>© 威哥制作 盗版必究</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 点击按钮显示/隐藏菜单
+    const toggleMobileMenu = () => {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    };
+    
+    document.getElementById('mobile-menu-button').addEventListener('click', toggleMobileMenu);
+    
+    // 滚动效果
+    const handleNavScroll = () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 10) {
+        nav.classList.add('shadow-lg', 'bg-white/95', 'backdrop-blur-sm');
+        nav.classList.remove('shadow-md', 'bg-white');
+      } else {
+        nav.classList.add('shadow-md', 'bg-white');
+        nav.classList.remove('shadow-lg', 'bg-white/95', 'backdrop-blur-sm');
+      }
+    };
+    
+    window.addEventListener('scroll', handleNavScroll);
+    
+    // 以后再添加更多功能
+    // 可能需要ajax加载更多照片
+    // todo：实现点赞功能
+  </script>
+</body>
+</html>    

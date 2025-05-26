@@ -1,0 +1,232 @@
+@layer utilities {
+  .content-auto {
+    content-visibility: auto;
+  }
+  
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+}
+
+/* 全局样式 */
+body {
+  background: #fff;
+  font-family: 'Inter', 'Roboto', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+  color: #222;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+/* 图片慢加载效果 */
+img {
+  transition: opacity 0.5s ease;
+}
+
+img[data-src] {
+  opacity: 0;
+}
+
+img.loaded {
+  opacity: 1;
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 导航栏滚动效果 */
+nav {
+  transition: all 0.3s ease;
+  border-radius: 0 !important;
+  box-shadow: 0 2px 4px rgb(255, 255, 255);
+  background-clip: padding-box !important;
+}
+
+/* 强制所有导航栏元素不使用圆角 */
+nav, nav *, nav a, nav button, nav div, nav span {
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fbcfe8;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fd5f8f;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* 延迟动画 */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+
+/* ins风格卡片和按钮 */
+.ins-card {
+  border-radius: 1.5rem !important;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.08) !important;
+  border: none !important;
+}
+.ins-avatar {
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+  border: 2px solid #fff;
+}
+.ins-like-btn, .ins-comment-btn {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+  border-radius: 9999px;
+  transition: background 0.2s, color 0.2s;
+}
+.ins-like-btn:hover {
+  background: #ffe4ec;
+  color: #ec4899;
+}
+.ins-comment-btn:hover {
+  background: #fff7ed;
+  color: #fb923c;
+}
+
+/* 卡片圆角和阴影 */
+.bg-white, .card, .ins-card {
+  border-radius: 1.5rem !important;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.08) !important;
+  border: none !important;
+}
+
+/* 输入框圆角和简洁风格 */
+input, textarea, select {
+  border-radius: 1.5rem !important;
+  border: 1px solid #ffffff;
+  background: #fafafa;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+input:focus, textarea:focus, select:focus {
+  border: 1.5px solid #fb7185;
+  box-shadow: 0 0 0 2px #fbcfe8;
+  outline: none;
+}
+
+.btn, .bg-orange-400, .hover\:bg-orange-500:hover {
+  background: linear-gradient(90deg, #fd5f3f 0%, #fcae3e 50%, #fd5f8f 100%) !important;
+  color: #fff !important;
+  border-radius: 2rem !important;
+  border: none !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 8px 0 rgba(253,95,143,0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.btn:hover, .hover\:bg-orange-500:hover {
+  background: linear-gradient(90deg, #fd5f8f 0%, #fcae3e 100%) !important;
+  box-shadow: 0 4px 16px 0 rgba(253,95,143,0.12);
+}
+
+/* 分页按钮圆角和高亮 */
+[aria-label="分页"] a {
+  border-radius: 1.5rem !important;
+  border: none !important;
+  margin: 0 2px;
+}
+[aria-label="分页"] a.bg-orange-100, [aria-label="分页"] a.text-orange-500 {
+  background: linear-gradient(90deg, #fd5f8f 0%, #fcae3e 100%) !important;
+  color: #fff !important;
+}
+
+.bg-orange-100, .hover\:bg-orange-100:hover {
+  background: #fff7ed !important;
+  color: #fd5f8f !important;
+}
+:not(nav) .rounded-md, :not(nav) .rounded-lg, :not(nav) .rounded-xl, :not(nav) .rounded-full {
+  border-radius: 1.5rem !important;
+}
+.border, .border-gray-300, .border-gray-200, .border-orange-300 {
+  border: none !important;
+}
+
+/* 页脚更简洁 */
+footer {
+  background: #fff;
+  color: #aaa;
+  border-top: 1.5px solid #f3f3f3;
+}
+footer .text-xl, footer .font-bold {
+  color: #fd5f8f !important;
+}
+
+/* 分类标签ins风格配色 */
+.tag-life {
+  background: #a18cd1 !important;
+  color: #fff !important;
+}
+.tag-family {
+  background: #43cea2 !important;
+  color: #fff !important;
+}
+.tag-food {
+  background: #f7971e !important;
+  color: #fff !important;
+}
+.tag-city {
+  background: #56ccf2 !important;
+  color: #fff !important;
+}
+.tag-nature {
+  background: #38ef7d !important;
+  color: #fff !important;
+}
+.tag-pet {
+  background: #f953c6 !important;
+  color: #fff !important;
+}
+.tag-other {
+  background: #bdbdbd !important;
+  color: #fff !important;
+}
+.bg-main-ins, .bg-login-ins, .bg-add-ins, .bg-register-ins { background: #dfe7f1 !important; }
+
+/* 左侧导航栏分隔线 */
+.left-nav-divider {
+  border-bottom: 2.5px solid #e0e0e0 !important;
+  margin-bottom: 1.5rem !important;
+  padding-bottom: 1.25rem !important;
+}
+
+.category-underline {
+  border-bottom: 1.5px solid #e0e0e0;
+  margin-bottom: 0.2rem;
+  display: block;
+}
+.category-underline:last-child {
+  border-bottom: none;
+}
+
+
